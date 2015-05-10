@@ -6,8 +6,8 @@ module RubyFighter
       self.caption = "Ruby Fighter"
 
       @backdrop = Backdrop.new(self, "background-1.jpg")
-      @player1  = Player.new(self, "ryu")
-      @player2  = Player.new(self, "chun-li")
+      @player1  = Player.new(self, "ryu", false)
+      @player2  = Player.new(self, "chun-li", true)
     end
 
     def draw
