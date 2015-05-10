@@ -4,4 +4,8 @@
 
 require_relative "./ruby-fighter"
 
-RubyFighter::Game.new.show
+begin
+  RubyFighter::Game.new.show
+rescue Interrupt => e
+  puts "\rScratch by bellah!"
+end
