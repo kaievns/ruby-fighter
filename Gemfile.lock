@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    ruby-fighter (0.0.0)
+      gosu (~> 0.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -7,4 +13,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  gosu
+  bundler (~> 1.9)
+  ruby-fighter!
