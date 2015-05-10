@@ -6,14 +6,12 @@ module RubyFighter
       self.caption = "Ruby Fighter"
 
       @backdrop = Backdrop.new(self, "background-1.jpg")
-
-      @dude = Gosu::Image.new(self, "assets/ryu/idle-1.gif", false)
+      @dude = Player.new(self, "ryu")
     end
 
     def draw
       @backdrop.draw
-
-      @dude.draw(100, 180, 1, 3, 3)
+      @dude.draw
     end
   end
 
