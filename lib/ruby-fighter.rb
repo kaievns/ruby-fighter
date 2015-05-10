@@ -1,2 +1,1 @@
-module RubyFighter
-end
+require_relative "./ruby_fighter"
