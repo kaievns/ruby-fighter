@@ -26,6 +26,14 @@ module RubyFighter
       @pos_x += SPEED
     end
 
+    def left
+      @pos_x
+    end
+
+    def right
+      @pos_x + width
+    end
+
     def width
       @image.width * SCALE
     end

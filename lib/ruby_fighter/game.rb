@@ -19,13 +19,13 @@ module RubyFighter
 
     def update
       if button_down? char_to_button_id("a")
-        @player1.move_left
+        @player1.move_left if @player1.left > 0
       elsif button_down? char_to_button_id("d")
-        @player1.move_right
+        @player1.move_right if @player1.right < @player2.left
       elsif button_down? char_to_button_id("k")
-        @player2.move_left
+        @player2.move_left if @player2.left > @player1.right
       elsif button_down? char_to_button_id(";")
-        @player2.move_right
+        @player2.move_right if @player2.right < width
       end
     end
   end
