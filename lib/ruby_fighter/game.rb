@@ -13,11 +13,20 @@ module RubyFighter
     def draw
       @backdrop.draw
 
-      @player1.move_to 100
-      @player2.move_to width - 100 - @player2.width
-
       @player1.draw
       @player2.draw
+    end
+
+    def update
+      if button_down? char_to_button_id("a")
+        @player1.move_left
+      elsif button_down? char_to_button_id("d")
+        @player1.move_right
+      elsif button_down? char_to_button_id("k")
+        @player2.move_left
+      elsif button_down? char_to_button_id(";")
+        @player2.move_right
+      end
     end
   end
 
