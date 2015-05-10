@@ -5,9 +5,13 @@ module RubyFighter
       super(768, 480, false)
       self.caption = "Ruby Fighter"
 
-      @backdrop = Backdrop.new(self, "background-1.jpg")
-      @player1  = Player.new(self, "ryu", false)
-      @player2  = Player.new(self, "chun-li", true)
+      @backdrop  = Backdrop.new(self, "background-1.jpg")
+
+      @player1   = Player.new(self, "ryu", false)
+      @player2   = Player.new(self, "chun-li", true)
+
+      @controls1 = Controls.new(self, @player1, 1)
+      @controls2 = Controls.new(self, @player2, 2)
     end
 
     def draw
@@ -18,15 +22,12 @@ module RubyFighter
     end
 
     def update
-      if button_down? char_to_button_id("a")
-        @player1.move_left if @player1.left > 0
-      elsif button_down? char_to_button_id("d")
-        @player1.move_right if @player1.right < @player2.left
-      elsif button_down? char_to_button_id("k")
-        @player2.move_left if @player2.left > @player1.right
-      elsif button_down? char_to_button_id(";")
-        @player2.move_right if @player2.right < width
-      end
+      @controls1.update 0, @player2.left
+      @controls2.update @player1.right, width
+    end
+
+    def button_down?(char)
+      super char_to_button_id(char)
     end
   end
 
