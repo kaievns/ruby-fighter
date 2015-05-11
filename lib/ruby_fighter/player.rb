@@ -23,6 +23,18 @@ module RubyFighter
       @tiles.walking!
     end
 
+    def blocking!
+      @tiles.blocking!
+    end
+
+    def punch!
+      @tiles.punch!
+    end
+
+    def kick!
+      @tiles.kick!
+    end
+
     def move_to(x)
       @pos_x = x
     end
@@ -59,10 +71,11 @@ module RubyFighter
     class Tileset < Hash
 
       def initialize(window, name)
-        self[:idle]    = RubyFighter::Animation.new(window, "#{name}/idle")
-        self[:walking] = RubyFighter::Animation.new(window, "#{name}/walking")
-        self[:punch]   = RubyFighter::Animation.new(window, "#{name}/punch")
-        self[:kick]    = RubyFighter::Animation.new(window, "#{name}/kick")
+        self[:idle]     = RubyFighter::Animation.new(window, "#{name}/idle")
+        self[:walking]  = RubyFighter::Animation.new(window, "#{name}/walking")
+        self[:blocking] = RubyFighter::Animation.new(window, "#{name}/blocking")
+        self[:punch]    = RubyFighter::Animation.new(window, "#{name}/punch")
+        self[:kick]     = RubyFighter::Animation.new(window, "#{name}/kick")
 
         idle!
       end
@@ -73,6 +86,18 @@ module RubyFighter
 
       def walking!
         @current_animation = self[:walking]
+      end
+
+      def blocking!
+        @current_animation = self[:blocking]
+      end
+
+      def punch!
+        @current_animation = self[:punch]
+      end
+
+      def kick!
+        @current_animation = self[:kick]
       end
 
       def width
