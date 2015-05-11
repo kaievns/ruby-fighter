@@ -15,13 +15,31 @@ module RubyFighter
     end
 
     def play_once(&callback)
+      @index           = nil
+      @last_time       = nil
       @finish_callback = callback
     end
 
   private
 
     def current_image
-      @images[Gosu.milliseconds / 200 % @images.size]
+      @last_time ||= Gosu.milliseconds
+      @index     ||= 0
+
+      next_image if Gosu.milliseconds - @last_time > 150
+
+      @images[@index]
+    end
+
+    def next_image
+      @last_time   = Gosu.milliseconds
+      @index      += 1
+      @index       = 0 if @index > @images.size - 1
+
+      if @index == 0 && @finish_callback
+        @finish_callback.call
+        @finish_callback = nil
+      end
     end
 
     def find_images_matching(pattern, window)
