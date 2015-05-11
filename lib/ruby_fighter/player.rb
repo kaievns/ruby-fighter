@@ -6,10 +6,10 @@ module RubyFighter
     SPEED = 3
 
     def initialize(window, name, flip=false)
-      @images = RubyFighter::Animation.new(window, "#{name}/idle")
-      @pos_x  = 0
-      @flip   = flip
-      @max_x  = window.width
+      @tiles = Tileset.new(window, name)
+      @pos_x = 0
+      @flip  = flip
+      @max_x = window.width
 
       move_to flip ? @max_x - 100 - width : 100
     end
@@ -35,15 +35,45 @@ module RubyFighter
     end
 
     def width
-      @images.width * SCALE
+      @tiles.width * SCALE
     end
 
     def draw
       pos_x   = @pos_x + (@flip ? width : 0)
       scale_x = SCALE * (@flip ? -1 : 1)
 
-      @images.draw(pos_x, POS_Y, 1, scale_x, SCALE)
+      @tiles.draw(pos_x, POS_Y, 1, scale_x, SCALE)
     end
 
+  private
+
+    class Tileset < Hash
+
+      def initialize(window, name)
+        self[:idle]    = RubyFighter::Animation.new(window, "#{name}/idle")
+        self[:walking] = RubyFighter::Animation.new(window, "#{name}/walking")
+        self[:punch]   = RubyFighter::Animation.new(window, "#{name}/punch")
+        self[:kick]    = RubyFighter::Animation.new(window, "#{name}/kick")
+
+        idle!
+      end
+
+      def idle!
+        @current_animation = self[:idle]
+      end
+
+      def walking!
+        @current_animation = self[:walking]
+      end
+
+      def width
+        @current_animation.width
+      end
+
+      def draw(*args)
+        @current_animation.draw *args
+      end
+
+    end
   end
 end
