@@ -6,13 +6,10 @@ module RubyFighter
     SPEED = 3
 
     def initialize(window, name, flip=false)
-      @images = (1...4).map do |i|
-        Gosu::Image.new(window, "assets/#{name}/idle-#{i}.gif", false)
-      end
-
-      @pos_x = 0
-      @flip  = flip
-      @max_x = window.width
+      @images = RubyFighter::Animation.new(window, "#{name}/idle")
+      @pos_x  = 0
+      @flip   = flip
+      @max_x  = window.width
 
       move_to flip ? @max_x - 100 - width : 100
     end
@@ -38,15 +35,14 @@ module RubyFighter
     end
 
     def width
-      @images[0].width * SCALE
+      @images.width * SCALE
     end
 
     def draw
       pos_x   = @pos_x + (@flip ? width : 0)
       scale_x = SCALE * (@flip ? -1 : 1)
 
-      image = @images[Gosu.milliseconds / 200 % @images.size]
-      image.draw(pos_x, POS_Y, 1, scale_x, SCALE)
+      @images.draw(pos_x, POS_Y, 1, scale_x, SCALE)
     end
 
   end
