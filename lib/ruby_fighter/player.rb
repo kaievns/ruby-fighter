@@ -16,6 +16,7 @@ module RubyFighter
     end
 
     def idle!
+      return if @busy
       @tiles.idle!
     end
 
@@ -28,11 +29,19 @@ module RubyFighter
     end
 
     def punch!
-      @tiles.punch!
+      @busy = true
+      @tiles.punch! do
+        @busy = false
+        idle!
+      end
     end
 
     def kick!
-      @tiles.kick!
+      @busy = true
+      @tiles.kick! do
+        @busy = false
+        idle!
+      end
     end
 
     def move_to(x)
@@ -92,12 +101,14 @@ module RubyFighter
         @current_animation = self[:blocking]
       end
 
-      def punch!
+      def punch!(&callback)
         @current_animation = self[:punch]
+        @current_animation.play_once &callback
       end
 
-      def kick!
+      def kick!(&callback)
         @current_animation = self[:kick]
+        @current_animation.play_once &callback
       end
 
       def width
