@@ -12,6 +12,15 @@ module RubyFighter
       @max_x = window.width
 
       move_to flip ? @max_x - 100 - width : 100
+      idle!
+    end
+
+    def idle!
+      @tiles.idle!
+    end
+
+    def walking!
+      @tiles.walking!
     end
 
     def move_to(x)

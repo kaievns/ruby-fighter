@@ -24,6 +24,16 @@ module RubyFighter
       end
     end
 
+    def button_down(key)
+      case @keys[key]
+      when :left, :right then @player.walking!
+      end
+    end
+
+    def button_up(key)
+      @player.idle!
+    end
+
   private
 
     def matching_action

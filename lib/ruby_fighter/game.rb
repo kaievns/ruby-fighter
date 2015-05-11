@@ -26,6 +26,16 @@ module RubyFighter
       @controls2.update @player1.right, width
     end
 
+    def button_down(id)
+      @controls1.button_down button_id_to_char(id)
+      @controls2.button_down button_id_to_char(id)
+    end
+
+    def button_up(id)
+      @controls1.button_up button_id_to_char(id)
+      @controls2.button_up button_id_to_char(id)
+    end
+
     def button_down?(char)
       super char_to_button_id(char)
     end
