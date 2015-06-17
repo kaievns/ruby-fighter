@@ -16,13 +16,29 @@ $ sudo apt-get install build-essential libsdl2-dev \
                     libgl1-mesa-dev libfreeimage-dev libopenal-dev libsndfile-dev
 ```
 
-### Play! 
+### Play!
 ```
-git clone git@github.com/MadRabbit/ruby-fighter.git
+git clone https://github.com/MadRabbit/ruby-fighter.git
 cd ruby-fighter
 bundle
 ./bin/ruby-fighter
 ```
+
+If you get `bundle: command not found`, run `sudo gem install bundler`.
+
+### Controls
+
+Player 1
+* left - a
+* right - d
+* punch - e
+* kick - r
+
+Player 2
+* left - k
+* right - ;
+* punch - p
+* kick - l
 
 # Copyright & License
 
