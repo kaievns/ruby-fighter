@@ -3,7 +3,7 @@
 Street fighter in ruby + gosu.
 
 ### Getting Started
-To start with you will need some libraries to be installed system-wide.
+In order to start the game you need following libraries to be installed system-wide:
 
 #### OSX
 ```
@@ -31,14 +31,16 @@ If you get `bundle: command not found`, run `sudo gem install bundler`.
 Player 1
 * left - a
 * right - d
+* block - q
 * punch - e
 * kick - r
 
 Player 2
 * left - k
 * right - ;
+* block - i
 * punch - p
-* kick - l
+* kick - [
 
 # Copyright & License
 
