@@ -3,7 +3,7 @@ module RubyFighter
   class Player
     SCALE = 3   # same for all players
     POS_Y = 180
-    SPEED = 3
+    SPEED = 9
 
     def initialize(window, name, flip=false)
       @tiles = Tileset.new(window, name)
